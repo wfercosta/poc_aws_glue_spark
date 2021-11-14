@@ -24,6 +24,7 @@ jobs:
         working-directory: ./apps/data/data-metrics
         run: |
           pip install pipenv
+          pipenv shell
           pipenv install
       - name: Test with pytest
         working-directory: ./apps/data/data-metrics
