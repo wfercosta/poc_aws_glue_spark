@@ -35,7 +35,7 @@ jobs:
         working-directory: ./apps/data/data-metrics
         if: steps.cache-pipenv.outputs.cache-hit != 'true'
         run: |
-          pipenv Install
+          pipenv install
 
       - name: Run test suite
         working-directory: ./apps/data/data-metrics
