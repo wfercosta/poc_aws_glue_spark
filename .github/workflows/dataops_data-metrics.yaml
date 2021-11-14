@@ -1,4 +1,4 @@
-name: Data CI - Data metrics
+name: DataOps - Data metrics
 on:
   push:
     paths:
