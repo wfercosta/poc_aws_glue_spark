@@ -19,9 +19,11 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
+        working-directory: ./apps/data/data-metrics
         run: |
           pip install pipenv
           pipenv install
       - name: Test with pytest
+        working-directory: ./apps/data/data-metrics
         run: |
           pytest
