@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 pyspark = "*"
 pytest = "*"
+boto3 = "*"
+moto = {extras = ["all", "ec2", "s3", "server"], version = "*"}
+flask = "*"
 
 [dev-packages]
 autopep8 = "*"
