@@ -1,0 +1,30 @@
+name: Microservice - Metrics
+on:
+  push:
+    paths:
+      - './apps/microservices/ms-metrics/**'
+      
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11'
+
+      - name: Maven Package
+        working-directory: ./apps/microservices/ms-metrics
+        run: ./mvnw clean package
+
+      - name: Maven Verify
+        working-directory: ./apps/microservices/ms-metrics
+        run: ./mvnw clean verify -DskipTests
+
