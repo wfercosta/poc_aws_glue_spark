@@ -3,7 +3,10 @@ on:
   push:
     paths:
       - './apps/microservices/ms-metrics/**'
-      
+  pull_request:
+    paths:
+      - './apps/microservices/ms-metrics/**'
+  
   workflow_dispatch:
 
 jobs:
