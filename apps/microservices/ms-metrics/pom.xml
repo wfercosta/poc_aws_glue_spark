@@ -15,7 +15,7 @@
 	<description>Application that exposes metrics and status from API</description>
 	<properties>
 		<java.version>11</java.version>
-		<tests.tags>unit, component</tests.tags>
+		<test.tags>unit, component, integration</test.tags>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -103,7 +103,7 @@
 					</dependency>
 				</dependencies>
 				<configuration>
-					<groups>component</groups>
+					<groups>${test.tags}</groups>
 				</configuration>
 			</plugin>
 		</plugins>

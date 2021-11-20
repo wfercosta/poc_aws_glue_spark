@@ -23,11 +23,19 @@ jobs:
         with:
           java-version: '11'
 
-      - name: Maven Package
+      - name: Maven Dependencies
         working-directory: ./apps/microservices/ms-metrics
-        run: ./mvnw clean package
+        run: ./mvnw clean install -DskipTests
 
-      - name: Maven Verify
+      - name: Maven Unit Testing
         working-directory: ./apps/microservices/ms-metrics
-        run: ./mvnw clean verify -DskipTests
+        run: ./mvnw test -Dtest.tags=unit
+
+      - name: Maven Component Testing
+        working-directory: ./apps/microservices/ms-metrics
+        run: ./mvnw test -Dtest.tags=component
+
+      - name: Maven Integration Testing
+        working-directory: ./apps/microservices/ms-metrics
+        run: ./mvnw test -Dtest.tags=integration
 
