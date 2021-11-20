@@ -14,8 +14,3 @@ spring:
       hibernate:
         format_sql: true
         enable_lazy_load_no_trans: true
-
-    datasource:
-      url: jdbc:postgresql://localhost:5432/postgres
-      username: postgres
-      password: admin

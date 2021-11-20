@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+  db-ms-metrics:
+    image: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: admin
+
+volumes:
+  db_data: {}
+  db_data_order: {}
