@@ -7,5 +7,5 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MetaView {
 	private final int totalPages;
-	private final int totalRecords;
+	private final long totalRecords;
 }

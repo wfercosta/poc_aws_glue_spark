@@ -2,16 +2,13 @@ package br.com.example.ms.metrics.entrypoint.rest;
 
 import br.com.example.ms.metrics.core.regulatory.outages.OutageEventEntry;
 import br.com.example.ms.metrics.core.regulatory.outages.OutageEventQueryUseCase;
-import br.com.example.ms.metrics.core.regulatory.outages.PagingRequest;
-import br.com.example.ms.metrics.core.regulatory.outages.PagingResponse;
-import br.com.example.ms.metrics.templates.BasePackage;
+import br.com.example.ms.metrics.core.regulatory.outages.PageResponse;
+import br.com.example.ms.metrics.core.regulatory.outages.PageableRequest;
 import br.com.example.ms.metrics.templates.OutageEventEntryTemplate;
+import br.com.example.ms.metrics.test.BaseTest;
 import br.com.example.ms.metrics.test.Category;
 import br.com.six2six.fixturefactory.Fixture;
-import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.hamcrest.Matchers;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -28,7 +25,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -39,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith({SpringExtension.class})
 @WebMvcTest(value = OutageController.class)
 @Tag(Category.UNIT_TEST)
-public class OutageControllerTest {
+public class OutageControllerTest extends BaseTest {
 
 	public static final int TOTAL_PAGES_ONE = 1;
 	public static final int TOTAL_RECORDS_ONE = 1;
@@ -56,12 +52,7 @@ public class OutageControllerTest {
 	OutageEventQueryUseCase useCase;
 
 	@Captor
-	ArgumentCaptor<PagingRequest> pagingRequestCaptor;
-
-	@BeforeAll
-	static void beforeAll() {
-		FixtureFactoryLoader.loadTemplates(BasePackage.class.getPackageName());
-	}
+	ArgumentCaptor<PageableRequest> pagingRequestCaptor;
 
 	@Test
 	@DisplayName("Should return status OK and entries when exists data")
@@ -71,8 +62,8 @@ public class OutageControllerTest {
 		final var fixture = (OutageEventEntry) Fixture.from(OutageEventEntry.class)
 				.gimme(OutageEventEntryTemplate.BASIC);
 
-		when(useCase.execute(Mockito.any(PagingRequest.class)))
-				.thenReturn(PagingResponse.create(singletonList(fixture), TOTAL_PAGES_ONE, TOTAL_RECORDS_ONE));
+		when(useCase.execute(Mockito.any(PageableRequest.class)))
+				.thenReturn(PageResponse.of(singletonList(fixture), TOTAL_PAGES_ONE, TOTAL_RECORDS_ONE));
 
 		//Act | Asserts
 		mockMvc.perform(get("/discovery/v1/outages")
@@ -85,8 +76,8 @@ public class OutageControllerTest {
 				.andExpect(jsonPath("$.meta.totalPages", greaterThan(0)));
 
 		verify(useCase).execute(pagingRequestCaptor.capture());
-		
-		PagingRequest captured = pagingRequestCaptor.getValue();
+
+		final PageableRequest captured = pagingRequestCaptor.getValue();
 
 		assertThat(captured, notNullValue());
 		assertThat(captured.getPage(), is(1));

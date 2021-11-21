@@ -14,7 +14,7 @@ public class PagingResponseEnvelopView<T> {
 	private final List<T> data;
 	private final MetaView meta;
 
-	public static <T> PagingResponseEnvelopView<T> of(final List<T> data, final int totalPages, final int totalRecords) {
+	public static <T> PagingResponseEnvelopView<T> of(final List<T> data, final int totalPages, final long totalRecords) {
 		return new PagingResponseEnvelopView<T>(data, new MetaView(totalPages, totalRecords));
 	}
 }

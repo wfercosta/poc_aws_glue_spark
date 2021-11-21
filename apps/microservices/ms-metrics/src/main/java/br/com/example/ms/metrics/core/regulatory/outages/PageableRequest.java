@@ -7,12 +7,12 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 @EqualsAndHashCode
-public class PagingRequest {
+public class PageableRequest {
 
 	private final int page;
 	private final int size;
 
-	public static PagingRequest of(final int page, final int size) {
-		return new PagingRequest(page, size);
+	public static PageableRequest of(final int page, final int size) {
+		return new PageableRequest(page, size);
 	}
 }
