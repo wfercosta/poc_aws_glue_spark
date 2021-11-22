@@ -5,7 +5,6 @@ import br.com.example.ms.metrics.core.regulatory.outages.OutageEventQueryUseCase
 import br.com.example.ms.metrics.core.regulatory.outages.PageResponse;
 import br.com.example.ms.metrics.core.regulatory.outages.PageableRequest;
 import br.com.example.ms.metrics.templates.OutageEventEntryTemplate;
-import br.com.example.ms.metrics.test.BaseTest;
 import br.com.example.ms.metrics.test.Category;
 import br.com.six2six.fixturefactory.Fixture;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -35,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith({SpringExtension.class})
 @WebMvcTest(value = OutageController.class)
 @Tag(Category.UNIT_TEST)
-public class OutageControllerTest extends BaseTest {
+public class OutageControllerTest {
 
 	public static final int TOTAL_PAGES_ONE = 1;
 	public static final int TOTAL_RECORDS_ONE = 1;

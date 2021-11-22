@@ -20,7 +20,7 @@ public class OutageEventTableTemplate implements TemplateLoader {
 			add("duration", Duration.of(10, ChronoUnit.MINUTES));
 			add("partial", Boolean.TRUE);
 			add("explanation", "API Gateway Updates");
-			add("endpoints", Fixture.from(EndpointTable.class).gimme(2, EndpointTableTemplate.BASIC));
+			add("endpoints", has(1).of(EndpointTable.class, EndpointTableTemplate.BASIC));
 		}});
 	}
 }

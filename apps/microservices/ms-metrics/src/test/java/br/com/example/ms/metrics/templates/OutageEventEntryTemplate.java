@@ -22,7 +22,7 @@ public class OutageEventEntryTemplate implements TemplateLoader {
 			add("duration", Duration.of(10, ChronoUnit.MINUTES));
 			add("partial", Boolean.TRUE);
 			add("explanation", "API Gateway Updates");
-			add("endpoints", Fixture.from(Endpoint.class).gimme(2, EndpointTemplate.BASIC));
+			add("endpoints", has(1).of(Endpoint.class, EndpointTemplate.BASIC));
 		}});
 
 	}

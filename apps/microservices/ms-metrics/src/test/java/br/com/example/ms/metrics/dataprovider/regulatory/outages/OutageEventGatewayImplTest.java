@@ -1,14 +1,12 @@
 package br.com.example.ms.metrics.dataprovider.regulatory.outages;
 
 import br.com.example.ms.metrics.core.regulatory.outages.PageableRequest;
+import br.com.example.ms.metrics.templates.BasePackage;
 import br.com.example.ms.metrics.templates.OutageEventTableTemplate;
-import br.com.example.ms.metrics.test.BaseTest;
 import br.com.example.ms.metrics.test.Category;
 import br.com.six2six.fixturefactory.Fixture;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -23,12 +21,17 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @Tag(Category.UNIT_TEST)
-public class OutageEventGatewayImplTest extends BaseTest {
+public class OutageEventGatewayImplTest {
 
 	OutageEventGatewayImpl sut;
 
 	@Mock
 	OutageRepository repository;
+
+	@BeforeAll
+	public static void beforeAll() {
+		FixtureFactoryLoader.loadTemplates(BasePackage.class.getPackageName());
+	}
 
 	@BeforeEach
 	void beforeEach() {
