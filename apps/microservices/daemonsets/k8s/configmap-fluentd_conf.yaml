@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluentd-conf-configmap
+  namespace: kube-system
+data:
+  fluent.conf: |-
+    <match **>
+      @type copy
+      copy_mode deep
+      <store>
+        @type s3
+        aws_key_id "#{ENV['AWS_ACCESS_KEY_ID']}"
+        aws_sec_key "#{ENV['AWS_SECRET_ACCESS_KEY']}"
+        s3_bucket "#{ENV['AWS_S3_BUCKET']}"
+        s3_region "#{ENV['AWS_REGION']}"
+        buffer_path /var/log/fluent/s3
+        s3_object_key_format %{path}%{time_slice}/cluster-log-%{index}.%{file_extension}
+        path "#{ENV['AWS_S3_BUCKET_PREFIX']}"
+        time_slice_format %Y%m%d-%H
+        time_slice_wait 10m
+        flush_interval 60s
+        buffer_chunk_limit 256m
+      </store>
+    </match>

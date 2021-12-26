@@ -39,10 +39,11 @@ def spark(request: pytest.FixtureRequest) -> SparkSession:
     hadoop.set('fs.s3a.access.key', S3_ACCESS_KEY)
     hadoop.set('fs.s3a.secret.key', S3_SECRET_KEY)
     hadoop.set('fs.s3a.endpoint', S3_ENDPOINT)
-    hadoop.set('fs.s3.impl', 'org.apache.hadoop.fs.s3a.S3AFileSystem')
+    # hadoop.set('fs.s3a.multipart.size', '104857600')
+    # hadoop.set('fs.s3.impl', 'org.apache.hadoop.fs.s3a.S3AFileSystem')
 
     s3 = boto3.resource('s3', endpoint_url=S3_ENDPOINT)
-    s3.create_bucket(Bucket='bucket')
+    s3.create_bucket(Bucket='test-bucket')
 
     def teardown():
         os.killpg(os.getpgid(process.pid), signal.SIGTERM)
