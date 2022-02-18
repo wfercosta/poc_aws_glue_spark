@@ -1,0 +1,13 @@
+spring:
+
+  flyway:
+    enabled: true
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password

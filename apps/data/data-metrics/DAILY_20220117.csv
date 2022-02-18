@@ -1,0 +1,14 @@
+date,context,family,version,resource,status,response_time,timestamp
+2021-05-11,open-banking,accounts,v1,/accounts,502,112,2022-01-17T13:50:00Z
+2021-05-11,open-banking,accounts,v1,/accounts/{id},502,112,2022-01-17T13:50:00Z
+2021-05-11,open-banking,accounts,v1,/accounts/{id}/transactions,502,112,2022-01-17T13:50:00Z
+2021-05-11,open-banking,accounts,v1,/accounts/{id}/balances,502,112,2022-01-17T13:50:00Z
+2021-05-11,open-banking,loans,v1,/loans,502,112,2022-01-17T13:50:00Z
+2021-05-11,open-banking,loans,v1,/loans/{id},502,112,2022-01-17T13:50:00Z
+2021-05-11,open-banking,credit-cards,v1,/accounts,502,112,2022-01-17T13:50:00Z
+2021-05-11,open-banking,credit-cards,v1,/accounts/{id},502,112,2022-01-17T13:50:00Z
+2021-05-11,open-banking,credit-cards,v1,/accounts/{id},300,112,2022-01-17T13:51:00Z
+2021-05-11,open-banking,credit-cards,v1,/accounts/{id}/balances,504,112,2022-01-17T13:50:00Z
+2021-05-11,open-banking,credit-cards,v1,/accounts/{id}/balances,429,112,2022-01-17T13:51:00Z
+2021-05-11,open-banking,credit-cards,v1,/accounts/{id}/transactions,500,112,2022-01-17T13:50:00Z
+2021-05-11,open-banking,credit-cards,v1,/accounts/{id}/transactions,200,112,2022-01-17T13:51:00Z
